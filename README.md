@@ -1,4 +1,4 @@
 # MrAlexMihaila.github.io
 
-this is a cool read me file!
+this is a cool read me file for class!
 
