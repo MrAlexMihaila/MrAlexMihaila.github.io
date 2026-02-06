@@ -65,17 +65,17 @@
             <caption>A table containing different types of bears, and some general facts about those types of bears</caption>
             <thead>
               <tr tabindex="11">
-                <td>Bear Type</td>
-                <td>Coat</td>
-                <td>Adult size</td>
-                <td>Habitat</td>
-                <td>Lifespan</td>
-                <td>Diet</td>
+                <th scope="col">Bear Type</th>
+                <th scope="col">Coat</th>
+                <th scope="col">Adult size</th>
+                <th scope="col">Habitat</th>
+                <th scope="col">Lifespan</th>
+                <th scope="col">Diet</th>
               </tr>
             </thead>
             <tbody>
               <tr tabindex="12">
-                <td>Wild</td>
+                <td scope="row">Wild</td>
                 <td>Brown or black</td>
                 <td>1.4 to 2.8 meters</td>
                 <td>Woods and forests</td>
@@ -83,7 +83,7 @@
                 <td>Fish, meat, plants</td>
               </tr>
               <tr tabindex="13">
-                <td>Urban</td>
+                <td scope="row">Urban</td>
                 <td>North Face</td>
                 <td>18 to 22</td>
                 <td>Condos and coffee shops</td>
@@ -123,7 +123,7 @@
           <audio controls tabindex="19">
             <source src="media/bear.mp3" type="audio/mp3">
             <source src="media/bear.ogg" type="audio/ogg">
-            <track src="caption.vtt" label="Audio Captions" kind="subtitles" srclang="en" default>
+            <track kind="captions" src="caption.vtt" srclang="en" label="English" default>
             <p>It looks like your browser doesn't support HTML5 audio players.</p>
             <a href="media/bear.mp3" tabindex="20">Here is a link to listen to the audio file directly</a>
           </audio>
@@ -143,7 +143,7 @@
 
         </aside>
         <section class="comments" tabindex="24">
-          <div class="show-hide" tabindex="25" role="form">Show comments</div>
+          <button class="show-hide" tabindex="25" role="form">Show comments</button>
 
           <div class="comment-wrapper">
 
@@ -151,16 +151,16 @@
 
             <form class="comment-form">
               <div class="flex-pair">
-                <label>
+                <label for="name">
                   Your name:
                 </label>
-                <input type="text" name="name" id="name" placeholder="Enter your name" aria-label="Comment Name Input">
+                <input type="text" name="name" id="name" placeholder="Enter your name">
               </div>
               <div class="flex-pair">
-                <label>
+                <label for="comment">
                   Your comment:
                 </label>
-                <input type="text" name="comment" id="comment" placeholder="Enter your comment" aria-label="Comment Description Input">
+                <input type="text" name="comment" id="comment" placeholder="Enter your comment">
               </div>
               <div>
                 <input type="submit" value="Submit comment">
