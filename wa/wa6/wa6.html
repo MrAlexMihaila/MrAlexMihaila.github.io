@@ -8,11 +8,11 @@
         /* CSS Reset and Base Styles */
         :root {
             /* Color Palette - 5 Core Colors */
-            --color-primary: #8a2fdf;     /* Thick Purple - Main Brand Color */
-            --color-secondary: #c40fc7;   /* Explosive Purple - Complementary Action Color */
-            --color-accent: #a12eff;      /* Veronica - Highlight / Warning Color */
-            --color-neutral: #4b61dd;     /* Arcane Brew - Neutral Text and Background */
-            --color-highlight: #18277c;   /* Dark Blue - Accent / Attention Color */
+            --color-primary: #8a2fdf;     /* Blue Violet - Main Brand Color */
+            --color-secondary: #c40fc7;   /* Shocking Purple - Complementary Action Color */
+            --color-accent: #a12eff;      /* Psychedelic Violet - Highlight / Warning Color */
+            --color-neutral: #5f6da8;     /* Comfort Mystic Blue - Neutral Text and Background */
+            --color-highlight: #18277c;   /* Dark Peacock Blue - Accent / Attention Color */
             
             /* Derived Colors for Flexibility */
             --color-background: color-mix(in srgb, var(--color-neutral) 10%, white);
@@ -57,21 +57,21 @@
 
         /* Typography Styles */
         h1 {
-            font-size: 4rem;
+            font-size: 2.98rem;
             font-weight: 700;
             margin-bottom: var(--spacing-md);
             color: var(--color-primary);
         }
 
         h2 {
-            font-size: 3rem;
+            font-size: 2.48rem;
             font-weight: 600;
             margin-bottom: var(--spacing-md);
             color: var(--color-secondary);
         }
 
         h3 {
-            font-size: 2rem;
+            font-size: 2.07rem;
             font-weight: 500;
             margin-bottom: var(--spacing-sm);
             color: var(--color-accent);
@@ -83,7 +83,7 @@
         }
 
         .small-text {
-            font-size: 0.75rem;
+            font-size: 0.83rem;
             color: color-mix(in srgb, var(--color-text-dark) 70%, transparent);
         }
 
@@ -113,14 +113,14 @@
             color: var(--color-text-light);
             text-decoration: none;
             border-radius: var(--radius-sm);
-            transition: background-color 0.3s ease, transform 0.2s;
+            transition: background-color 0.2s ease, transform 0.2s;
             border: 2px solid transparent;
         }
 
         .button:hover {
-            background-color: color-mix(in srgb, var(--color-primary) 80%, #ad8cff);
+            background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
             border-color: var(--color-secondary);
-            transform: scale(1.05);
+            transform: scale(1.15);
         }
 
         .button:active {
@@ -142,7 +142,7 @@
 
 
         .link:visited {
-            color: purple;
+            color: var(--color-accent);
         }
 
         /* Spacing Demonstration */
@@ -159,6 +159,7 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+</head>
 <body>
     <div class="container">
         <h1>Design System Template</h1>
@@ -183,8 +184,8 @@
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-neutral); color: var(--color-text-light);">
                     <strong>Neutral Color</strong>
-                    <p>#4b61dd</p>
-                    <small>Contrast Ratio: 5.18:1</small>
+                    <p>#5f6da8</p>
+                    <small>Contrast Ratio: 4.95:1</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-highlight); color: var(--color-text-dark);">
                     <strong>Highlight Color</strong>
