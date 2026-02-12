@@ -8,27 +8,27 @@
         /* CSS Reset and Base Styles */
         :root {
             /* Color Palette - 5 Core Colors */
-            --color-primary: #3498db;     /* Vibrant Blue - Main Brand Color */
-            --color-secondary: #2ecc71;   /* Emerald Green - Complementary Action Color */
-            --color-accent: #e74c3c;      /* Passionate Red - Highlight / Warning Color */
-            --color-neutral: #34495e;     /* Deep Slate Gray - Neutral Text and Background */
-            --color-highlight: #f1c40f;   /* Bright Yellow - Accent / Attention Color */
+            --color-primary: #8a2fdf;     /* Thick Purple - Main Brand Color */
+            --color-secondary: #c40fc7;   /* Explosive Purple - Complementary Action Color */
+            --color-accent: #a12eff;      /* Veronica - Highlight / Warning Color */
+            --color-neutral: #4b61dd;     /* Arcane Brew - Neutral Text and Background */
+            --color-highlight: #18277c;   /* Dark Blue - Accent / Attention Color */
             
             /* Derived Colors for Flexibility */
             --color-background: color-mix(in srgb, var(--color-neutral) 10%, white);
             --color-text-dark: var(--color-neutral);
-            --color-text-light: white;
+            --color-text-light: rgb(255, 255, 255);
 
             /* Typography */
-            --font-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-secondary: 'Roboto Mono', monospace;
+            --font-primary: "Jersey 25", sans-serif;
+            --font-secondary: "Jersey 25", monospace;
 
             /* Spacing System */
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --spacing-xl: 2rem;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 2.5rem;
 
             /* Border Radius */
             --radius-sm: 4px;
@@ -57,21 +57,21 @@
 
         /* Typography Styles */
         h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: var(--spacing-md);
             color: var(--color-primary);
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 600;
             margin-bottom: var(--spacing-md);
             color: var(--color-secondary);
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 500;
             margin-bottom: var(--spacing-sm);
             color: var(--color-accent);
@@ -118,7 +118,7 @@
         }
 
         .button:hover {
-            background-color: color-mix(in srgb, var(--color-primary) 80%, black);
+            background-color: color-mix(in srgb, var(--color-primary) 80%, #ad8cff);
             border-color: var(--color-secondary);
             transform: scale(1.05);
         }
@@ -135,13 +135,14 @@
         }
 
         .link:hover {
-            color: var(--color-accent);
+            color: var(--color-primary);
             text-decoration: underline;
-            text-decoration-color: var(--color-highlight);
+            text-decoration-color: var(--color-primary);
         }
 
+
         .link:visited {
-            color: var(--color-neutral);
+            color: purple;
         }
 
         /* Spacing Demonstration */
@@ -157,8 +158,7 @@
             height: 50px;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
 <body>
     <div class="container">
         <h1>Design System Template</h1>
@@ -168,38 +168,38 @@
             <div class="color-palette">
                 <div class="color-swatch" style="background-color: var(--color-primary); color: var(--color-text-light);">
                     <strong>Primary Color</strong>
-                    <p>#3498db</p>
-                    <small>Contrast Ratio: 4.6:1</small>
+                    <p>#8a2fdf</p>
+                    <small>Contrast Ratio: 5.91:1</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-secondary); color: var(--color-text-light);">
                     <strong>Secondary Color</strong>
-                    <p>#2ecc71</p>
-                    <small>Contrast Ratio: 4.8:1</small>
+                    <p>#c40fc7</p>
+                    <small>Contrast Ratio: 4.95:1</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-accent); color: var(--color-text-light);">
                     <strong>Accent Color</strong>
-                    <p>#e74c3c</p>
-                    <small>Contrast Ratio: 4.5:1</small>
+                    <p>#a12eff</p>
+                    <small>Contrast Ratio: 4.82:1</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-neutral); color: var(--color-text-light);">
                     <strong>Neutral Color</strong>
-                    <p>#34495e</p>
-                    <small>Contrast Ratio: 4.7:1</small>
+                    <p>#4b61dd</p>
+                    <small>Contrast Ratio: 5.18:1</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--color-highlight); color: var(--color-text-dark);">
                     <strong>Highlight Color</strong>
-                    <p>#f1c40f</p>
-                    <small>Contrast Ratio: 4.9:1</small>
+                    <p>#18277c</p>
+                    <small>Contrast Ratio: 12.96:1</small>
                 </div>
             </div>
         </section>
 
         <section>
             <h2>Typography</h2>
-            <h1>Heading 1 - Space Grotesk</h1>
-            <h2>Heading 2 - Space Grotesk</h2>
-            <h3>Heading 3 - Space Grotesk</h3>
-            <p class="body-text">Body Text - Using Space Grotesk with a comfortable line height and readable size.</p>
+            <h1>Heading 1 - Jersey 25</h1>
+            <h2>Heading 2 - Jersey 25</h2>
+            <h3>Heading 3 - Jersey 25</h3>
+            <p class="body-text">Body Text - Using Jersey 25 with a comfortable line height and readable size.</p>
             <p class="small-text">Small Text - Subtle and understated, perfect for annotations and footnotes.</p>
         </section>
 
