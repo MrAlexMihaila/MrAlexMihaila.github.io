@@ -34,11 +34,15 @@
     box-sizing: border-box;
 }
 
+/*for padding*/
 body {
     font-family: var(--font-primary);
     line-height: 1.6;
     background-color: var(--color-background);
     color: var(--color-text-dark);
+}
+
+body > *:not(header) {
     padding: var(--spacing-xl);
 }
 
@@ -135,4 +139,38 @@ h3 {
 
 .link:visited {
     color: var(--color-accent);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    background: var(--color-background);
+    backdrop-filter: blur(5px);
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/*to center h1 in header*/
+header h1 {
+    position: absolute;
+    transform: translateX(-50%);
+    margin: 20px;
+    font-size: 2.98rem;
+    left: 50%;
+    color: var(--color-primary);
+}
+
+header nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    background: var(--color-background);
+    justify-content: center;
 }
