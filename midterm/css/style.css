@@ -174,3 +174,25 @@ footer {
     background: var(--color-background);
     justify-content: center;
 }
+
+/*center h2 on all pages to be at the center of the page*/
+h2 {
+    text-align: center;
+}
+
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.homeTextContent {
+    flex: 1;
+    text-align: center;
+}
+
+.selfImage {
+    max-width: 400px;
+    height: auto;
+}
