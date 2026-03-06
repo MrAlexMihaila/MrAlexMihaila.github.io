@@ -185,10 +185,25 @@ h2 {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    padding: 20px;
 }
 
 .homeTextContent {
     flex-grow: 1;
+    text-align: center;
+}
+
+.mainContainer > div > h3, p {
+    text-align: center;
+}
+
+.mainContainer > div > ul {
+    list-style: disc;
+}
+
+.mainContainer > div > ul > li {
+    max-width: fit-content;
+    margin: auto;
     text-align: center;
 }
 
