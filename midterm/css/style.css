@@ -223,6 +223,7 @@ h2 {
 /*only affect h3 and p elements inside column container and a div*/
 .columnContainer > div > h3, p {
     text-align: center;
+    padding: 20px;
 }
 
 .columnContainer > div > ul {
@@ -238,6 +239,6 @@ h2 {
     text-align: center;
 }
 
-.columnContainer > div > a {
+.columnContainer > div > div {
     text-align: center;
 }
