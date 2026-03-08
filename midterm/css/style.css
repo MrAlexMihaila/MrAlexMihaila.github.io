@@ -197,15 +197,15 @@ h2 {
     text-align: center;
 }
 
-.mainContainer > div > h3, p {
+.mainContainer > section > h3, p {
     text-align: center;
 }
 
-.mainContainer > div > ul {
+.mainContainer > section > ul {
     list-style: disc;
 }
 
-.mainContainer > div > ul > li {
+.mainContainer > section > ul > li {
     max-width: fit-content;
     margin: auto;
     text-align: center;
@@ -213,6 +213,11 @@ h2 {
 
 .selfImage {
     max-width: 400px;
+    height: auto;
+}
+
+.selfImageLarger {
+    max-width: 600px;
     height: auto;
 }
 
