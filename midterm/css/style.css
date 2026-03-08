@@ -5,6 +5,10 @@
     --color-accent: #a12eff;      /* Psychedelic Violet - Highlight / Warning Color */
     --color-neutral: #5f6da8;     /* Comfort Mystic Blue - Neutral Text and Background */
     --color-highlight: #18277c;   /* Dark Peacock Blue - Accent / Attention Color */
+
+    --background-color-base: #1a0b2e;
+    --background-color-secondary: #2d0b3d;
+    --background-color-side: rgba(112, 28, 97, 0.4);
     
     /* Derived Colors for Flexibility */
     --color-background: rgb(from var(--color-neutral) r g b / 0.1);
@@ -39,7 +43,29 @@ body {
     font-family: var(--font-primary);
     line-height: 1.6;
     background-color: var(--color-background);
-    color: var(--color-text-dark);
+    color: #e2e8ff;
+}
+
+/*background only stuff*/
+body {
+    background-color: var(--background-color-base);
+    background-image: radial-gradient(circle at 50% 50%, var(--background-color-side), transparent 70%),
+    linear-gradient(135deg, var(--background-color-base) 0%, var(--background-color-secondary) 100%);
+    background-attachment: fixed;
+    background-size: 200% 200%;
+    animation: backgroundAnimation 15s ease-in-out infinite;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 body > *:not(header) {
