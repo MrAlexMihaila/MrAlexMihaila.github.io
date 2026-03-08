@@ -135,7 +135,7 @@ h3 {
 
 .button:hover {
     background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
-    transform: scale(1.35);
+    transform: scale(1.05);
 }
 
 .button:active {
@@ -171,59 +171,23 @@ header {
     padding: var(--spacing-md) var(--spacing-lg);
 }
 
-/*to center h1 in header*/
+header nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+}
+
+/*to make header be on the very top*/
 header h1 {
     text-align: center;
-    margin: 20px;
-    font-size: 2.98rem;
+    margin: 10px 0px;
+    font-size: 1.8rem;
     left: 50%;
     color: var(--color-primary);
-}
-
-header nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer {
-    display: flex;
-    align-items: center;
-    background: var(--color-background);
-    justify-content: center;
-}
-
-/*center h2 on all pages to be at the center of the page*/
-h2 {
-    text-align: center;
-}
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0px;
-    background: var(--color-background);
-    backdrop-filter: blur(5px);
-    padding: var(--spacing-md) var(--spacing-lg);
-}
-
-/*to center h1 in header*/
-header h1 {
-    text-align: center;
-    margin: 20px;
-    font-size: 2.98rem;
-    left: 50%;
-    color: var(--color-primary);
-}
-
-header nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    order: -1;
+    grid-column: 1/-1;
 }
 
 footer {
@@ -312,16 +276,19 @@ h2 {
     margin: auto;
 }
 
-
-
 /*media query for desktop view*/
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 50em) {
+    .button:hover {
+        background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
+        transform: scale(1.35);
+    }
+    
     .link {
         color: var(--color-secondary);
         text-decoration: none;
         transition: color 0.3s ease, text-decoration-color 0.3s;
     }
-    
+
     header {
         display: flex;
         align-items: center;
@@ -333,6 +300,14 @@ h2 {
         padding: var(--spacing-md) var(--spacing-lg);
     }
 
+    header nav {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
     /*to center h1 in header*/
     header h1 {
         text-align: center;
@@ -340,25 +315,7 @@ h2 {
         font-size: 2.98rem;
         left: 50%;
         color: var(--color-primary);
-    }
-
-    header nav {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    footer {
-        display: flex;
-        align-items: center;
-        background: var(--color-background);
-        justify-content: center;
-    }
-
-    /*center h2 on all pages to be at the center of the page*/
-    h2 {
-        text-align: center;
+        order: 0;
     }
 
     .mainContainer {
@@ -369,25 +326,6 @@ h2 {
         padding: 20px;
     }
 
-    .homeTextContent {
-        flex-grow: 1;
-        text-align: center;
-    }
-
-    .mainContainer > section > h3, p {
-        text-align: center;
-    }
-
-    .mainContainer > section > ul {
-        list-style: disc;
-    }
-
-    .mainContainer > section > ul > li {
-        max-width: fit-content;
-        margin: auto;
-        text-align: center;
-    }
-
     .selfImage {
         max-width: 400px;
         height: auto;
@@ -396,36 +334,5 @@ h2 {
     .selfImageLarger {
         max-width: 600px;
         height: auto;
-    }
-
-    .columnContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        flex-grow: 1;
-    }
-
-    /*only affect h3 and p elements inside column container and a div*/
-    .columnContainer > div > h3, p {
-        text-align: center;
-        padding: 20px;
-    }
-
-    .columnContainer > div > ul {
-        list-style: disc;
-    }
-
-    .columnContainer > div > ul > li {
-        max-width: fit-content;
-        margin: auto;
-    }
-
-    .columnContainer > div > address {
-        text-align: center;
-    }
-
-    .columnContainer > div > div {
-        text-align: center;
     }
 }
