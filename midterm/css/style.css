@@ -103,8 +103,12 @@ h3 {
 
 /* Component Styles */
 .button {
-    display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-md);
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    /*padding: var(--spacing-sm) var(--spacing-md);*/
     background-color: var(--color-primary);
     color: var(--color-text-light);
     text-decoration: none;
@@ -116,7 +120,7 @@ h3 {
 .button:hover {
     background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
     border-color: var(--color-secondary);
-    transform: scale(1.15);
+    transform: scale(1.35);
 }
 
 .button:active {
@@ -154,8 +158,7 @@ header {
 
 /*to center h1 in header*/
 header h1 {
-    position: absolute;
-    transform: translateX(-50%);
+    text-align: center;
     margin: 20px;
     font-size: 2.98rem;
     left: 50%;
@@ -166,6 +169,7 @@ header nav {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
 }
 
 footer {
