@@ -77,7 +77,7 @@ h2 {
     font-size: 2.48rem;
     font-weight: 600;
     margin-bottom: var(--spacing-md);
-    color: var(--color-primary);
+    color: var(--color-secondary);
     text-shadow: black 10px 10px 5px;
 }
 
@@ -143,6 +143,30 @@ h3 {
     background-color: var(--color-secondary);
 }
 
+.buttonAlreadyOnPage {
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    /*padding: var(--spacing-sm) var(--spacing-md);*/
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.buttonAlreadyOnPage:hover {
+    transform: scale(1.05);
+}
+
+.button, .buttonAlreadyOnPage {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
 .link {
     color: var(--color-secondary);
     text-decoration: none;
@@ -175,15 +199,16 @@ header nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    gap: 10px;
-    padding: 10px;
+    gap: 5px;
+    padding: 0px;
+    line-height: 1.2;
 }
 
 /*to make header be on the very top*/
 header h1 {
     text-align: center;
-    margin: 10px 0px;
-    font-size: 1.8rem;
+    margin: 0px 0px;
+    font-size: 1.4rem;
     left: 50%;
     color: var(--color-primary);
     order: -1;
@@ -260,20 +285,22 @@ h2 {
 .selfImage {
     display: block;
     margin: auto;
-    max-width: 400px;
+    max-width: 100%;
     height: auto;
 }
 
 .selfImageLarger {
     display: block;
     margin: auto;
-    max-width: 600px;
+    max-width: 100%;
     height: auto;
 }
 
 .projectImage {
     display: block;
     margin: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /*media query for desktop view*/
@@ -281,6 +308,15 @@ h2 {
     .button:hover {
         background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
         transform: scale(1.35);
+    }
+
+    .buttonAlreadyOnPage:hover {
+        transform: scale(1.35);
+    }
+
+    .button, .buttonAlreadyOnPage {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
     
     .link {
@@ -306,6 +342,7 @@ h2 {
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
+        gap: 20px;
     }
 
     /*to center h1 in header*/
@@ -332,6 +369,11 @@ h2 {
     }
 
     .selfImageLarger {
+        max-width: 600px;
+        height: auto;
+    }
+
+    .projectImage {
         max-width: 600px;
         height: auto;
     }
