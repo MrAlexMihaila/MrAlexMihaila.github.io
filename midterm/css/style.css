@@ -247,6 +247,20 @@ h2 {
     font-size: 1.4rem;
 }
 
+.contactContainer {
+    gap: 20px;
+    padding: 20px;
+}
+
+.contactContainer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
 .mainContainer > section > h3, p {
     text-align: center;
 }
@@ -319,6 +333,13 @@ h2 {
     transform: scale(1.05);
 }
 
+.projectImageNoHover {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
 .projectLink {
     transform: scale(1.00);
 }
@@ -382,9 +403,36 @@ h2 {
     .mainContainer {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
         gap: 20px;
         padding: 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .contactContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .contactContainer > div {
+        display: flex;
+        flex-grow: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .contactTextContent {
+        flex-grow: 1;
+        max-width: 400px;
     }
 
     .selfImage {
