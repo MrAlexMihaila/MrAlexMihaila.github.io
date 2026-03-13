@@ -326,6 +326,7 @@ h2 {
     margin: auto;
     max-width: 100%;
     height: auto;
+    padding: 10px;
 }
 
 .projectImage:hover {
@@ -338,6 +339,7 @@ h2 {
     margin: auto;
     max-width: 100%;
     height: auto;
+    padding: 10px;
 }
 
 .projectLink {
