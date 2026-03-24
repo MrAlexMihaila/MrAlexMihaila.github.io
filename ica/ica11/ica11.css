@@ -1,0 +1,454 @@
+:root {
+    /* Color Palette - 5 Core Colors */
+    --color-primary: #8a2fdf;     /* Blue Violet - Main Brand Color */
+    --color-secondary: #c40fc7;   /* Shocking Purple - Complementary Action Color */
+    --color-accent: #a12eff;      /* Psychedelic Violet - Highlight / Warning Color */
+    --color-neutral: #5f6da8;     /* Comfort Mystic Blue - Neutral Text and Background */
+    --color-highlight: #18277c;   /* Dark Peacock Blue - Accent / Attention Color */
+
+    --background-color-base: #1a0b2e;
+    --background-color-secondary: #2d0b3d;
+    --background-color-side: rgba(112, 28, 97, 0.4);
+    
+    /* Derived Colors for Flexibility */
+    --color-background: rgb(from var(--color-neutral) r g b / 0.1);
+    --color-text-dark: var(--color-neutral);
+    --color-text-light: rgb(255, 255, 255);
+
+    /* Typography */
+    --font-primary: "Jersey 25", sans-serif;
+    --font-secondary: "Jersey 25", monospace;
+
+    /* Spacing System */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*for padding*/
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background-color: var(--color-background);
+    color: #e2e8ff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/*background only stuff*/
+body {
+    background-color: var(--background-color-base);
+    background-image: radial-gradient(circle at 50% 50%, var(--background-color-side), transparent 70%),
+    linear-gradient(135deg, var(--background-color-base) 0%, var(--background-color-secondary) 100%);
+    background-attachment: fixed;
+    background-size: 200% 200%;
+}
+
+body > *:not(header) {
+    padding: var(--spacing-xl);
+}
+
+main {
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Typography Styles */
+h1 {
+    font-size: 2.98rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    text-shadow: black 10px 10px 5px;
+}
+
+h2 {
+    font-size: 2.48rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-secondary);
+    text-shadow: black 10px 10px 5px;
+}
+
+h3 {
+    font-size: 2.07rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-accent);
+    text-shadow: black 10px 10px 5px;
+}
+
+.body-text {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.small-text {
+    font-size: 0.83rem;
+    color: color-mix(in srgb, var(--color-text-dark) 70%, transparent);
+}
+
+/* Color Palette Section */
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.color-swatch {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Component Styles */
+.button {
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    /*padding: var(--spacing-sm) var(--spacing-md);*/
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.button:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+    background-color: var(--color-secondary);
+}
+
+.buttonAlreadyOnPage {
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    /*padding: var(--spacing-sm) var(--spacing-md);*/
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.buttonAlreadyOnPage:hover {
+    transform: scale(1.05);
+}
+
+.button, .buttonAlreadyOnPage {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.link {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration-color 0.3s;
+}
+
+.link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+}
+
+
+.link:visited {
+    color: var(--color-accent);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    background: var(--color-background);
+    backdrop-filter: blur(5px);
+    padding: var(--spacing-md) var(--spacing-lg);
+    z-index: 1;
+}
+
+header nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 5px;
+    padding: 0px;
+    line-height: 1.2;
+}
+
+/*to make header be on the very top*/
+header h1 {
+    text-align: center;
+    margin: 0px 0px;
+    font-size: 1.4rem;
+    left: 50%;
+    color: var(--color-primary);
+    order: -1;
+    grid-column: 1/-1;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    background: var(--color-background);
+    justify-content: center;
+}
+
+/*center h2 on all pages to be at the center of the page*/
+h2 {
+    text-align: center;
+}
+
+.mainContainer {
+    gap: 20px;
+    padding: 20px;
+}
+
+.homeTextContent {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.contactContainer {
+    gap: 20px;
+    padding: 20px;
+}
+
+.contactContainer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.mainContainer > section > h3, p {
+    text-align: center;
+}
+
+.mainContainer > section > ul {
+    list-style: disc;
+}
+
+.mainContainer > section > ul > li {
+    max-width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+    font-size: 1.4rem;
+}
+
+/*only affect h3 and p elements inside column container and a div*/
+.columnContainer > div > h3, p {
+    text-align: center;
+    padding: 20px;
+}
+
+.columnContainer > div > ul {
+    list-style: disc;
+}
+
+.columnContainer > div > ul > li {
+    max-width: fit-content;
+    margin: auto;
+}
+
+.columnContainer > div > address {
+    text-align: center;
+}
+
+.columnContainer > div > div {
+    text-align: center;
+}
+
+.selfImage {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.selfImageLarger {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.projectImage {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.projectImage:hover {
+    z-index: -1;
+    transform: scale(1.05);
+}
+
+.projectImageNoHover {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.projectLink {
+    transform: scale(1.00);
+}
+
+.projectLink:hover {
+    transform: scale(1.05);
+}
+
+/*media query for desktop view*/
+@media screen and (min-width: 50em) {
+    .button:hover {
+        background-color: color-mix(in srgb, var(--color-primary) 80%, #a12eff);
+        transform: scale(1.35);
+    }
+
+    .buttonAlreadyOnPage:hover {
+        transform: scale(1.35);
+    }
+
+    .button, .buttonAlreadyOnPage {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .link {
+        color: var(--color-secondary);
+        text-decoration: none;
+        transition: color 0.3s ease, text-decoration-color 0.3s;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0px;
+        background: var(--color-background);
+        backdrop-filter: blur(5px);
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    header nav {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 20px;
+    }
+
+    /*to center h1 in header*/
+    header h1 {
+        text-align: center;
+        margin: 20px;
+        font-size: 2.98rem;
+        left: 50%;
+        color: var(--color-primary);
+        order: 0;
+    }
+
+    .mainContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .contactContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .contactContainer > div {
+        display: flex;
+        flex-grow: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .contactTextContent {
+        flex-grow: 1;
+        max-width: 400px;
+    }
+
+    .selfImage {
+        max-width: 400px;
+        height: auto;
+    }
+
+    .selfImageLarger {
+        max-width: 600px;
+        height: auto;
+    }
+
+    .projectImage {
+        max-width: 600px;
+        height: auto;
+    }
+}
