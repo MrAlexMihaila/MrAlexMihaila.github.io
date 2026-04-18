@@ -6,7 +6,7 @@ const startGameButton = document.getElementById("startGameButton");
 const restartGameButton = document.getElementById("restartGameButton");
 
 let powerValue = 0;
-const powerChangeValue = 5;
+const powerChangeValue = 10;
 
 let timesAtMaxPower = 0;
 let timesAtMinPower = 0;
@@ -27,7 +27,7 @@ const finalDistance = 500;
 //6 - failed screen, too little power
 let gameState = 1;
 
-let distanceCheckTimer = setInterval(distanceCheckAndChange, 750);
+let distanceCheckTimer;
 
 addEventListener("keydown", checkIfKeyPressed);
 
@@ -47,7 +47,7 @@ function powerValueCalculation(increasing)
 {
     if(increasing)
     {
-        powerValue = powerValue + (powerChangeValue*5);
+        powerValue = powerValue + powerChangeValue;
         if(powerValue > 100)
         {
             powerValue = 100; //upper cap for power level
@@ -74,6 +74,10 @@ function startGame()
         startGameButton.disabled = true;
         restartGameButton.disabled = true;
         powerValue = 0;
+        currentDistance = 0;
+        timesAtMaxPower = 0;
+        timesAtMinPower = 0;
+        distanceCheckTimer = setInterval(distanceCheckAndChange, 750);
     }
 }
 
@@ -83,6 +87,7 @@ function restartGame()
     {
         gameState = 1;
         gameStateDisplay.innerText = "Game Not Started";
+        powerMeter.innerText = "Power Level: 0";
         startGameButton.disabled = false;
         restartGameButton.disabled = true;
     }
@@ -92,7 +97,6 @@ function distanceCheckAndChange()
 {
     if(gameState === 2)
     {
-        powerValueCalculation(false);
         let mult = 1;
         if(powerValue > 80)
         {
@@ -121,6 +125,8 @@ function distanceCheckAndChange()
         {
             timesAtMaxPower = 0;
         }
+
+        powerValueCalculation(false);
 
         if(powerValue === 0)
         {
