@@ -1,3 +1,43 @@
-#powerMeter {
-    color: red;
+#power-bar-container {
+    width: 300px;
+    height: 30px;
+    background: #eee;
+    border: 2px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#power-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: black;
+    transition: width 0.1s ease;
+}
+
+#track-container {
+    width: 300px;
+    height: 10px;
+    background: #ddd;
+    position: relative;
+    margin: 20px 0;
+}
+
+#runner-icon {
+    position: absolute;
+    left: 0%;
+    top: -20px;
+    font-size: 20px;
+    transition: left 0.1s linear;
+}
+
+.danger {
+    animation: shake 0.1s infinite;
+    background: red !important;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    50% { transform: translate(-1px, -1px); }
+    100% { transform: translate(1px, -1px); }
 }

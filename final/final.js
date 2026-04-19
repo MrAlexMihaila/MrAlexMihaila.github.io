@@ -17,7 +17,7 @@ let currentDistance = 0;
 const smallDistanceMult = 5;
 const mediumDistanceMult = 10;
 const largeDistanceMult = 20;
-const finalDistance = 500;
+const finalDistance = 250;
 
 //1 - intro
 //2 - running/power meter part
@@ -43,26 +43,27 @@ function checkIfKeyPressed(e)
     }
 }
 
-function powerValueCalculation(increasing)
-{
+function powerValueCalculation(increasing) {
     if(increasing)
     {
-        powerValue = powerValue + powerChangeValue;
-        if(powerValue > 100)
-        {
-            powerValue = 100; //upper cap for power level
-        }
-    }
-    else
+        powerValue = Math.min(100, powerValue + (powerChangeValue * 2));
+    } 
+    else 
     {
-        powerValue = powerValue - powerChangeValue;
-        if(powerValue < 0)
-        {
-            powerValue = 0; //lower cap for power level
-        }
+        powerValue = Math.max(0, powerValue - powerChangeValue);
     }
 
-    powerMeter.innerText = "Power Level: " + powerValue;
+    const fill = document.getElementById("power-bar-fill");
+    fill.style.width = powerValue + "%";
+
+    if(powerValue >= 100)
+    {
+        fill.classList.add("danger");
+    } 
+    else 
+    {
+        fill.classList.remove("danger");
+    }
 }
 
 function startGame()
@@ -78,6 +79,7 @@ function startGame()
         timesAtMaxPower = 0;
         timesAtMinPower = 0;
         distanceCheckTimer = setInterval(distanceCheckAndChange, 750);
+        document.getElementById("instructionBox").style.display = "none";
     }
 }
 
@@ -87,7 +89,22 @@ function restartGame()
     {
         gameState = 1;
         gameStateDisplay.innerText = "Game Not Started";
-        powerMeter.innerText = "Power Level: 0";
+
+        volumeDisplay.innerText = "Volume: ";
+        
+        const fill = document.getElementById("power-bar-fill");
+        if(fill)
+        {
+            fill.style.width = "0%";
+            fill.classList.remove("danger");
+        }
+
+        const runner = document.getElementById("runner-icon");
+        if(runner)
+        {
+            runner.style.left = "0%";
+        }
+
         startGameButton.disabled = false;
         restartGameButton.disabled = true;
     }
@@ -145,6 +162,10 @@ function distanceCheckAndChange()
 
         currentDistance = currentDistance + (1 * mult);
 
+        const runner = document.getElementById("runner-icon");
+        const progress = (currentDistance / finalDistance) * 100;
+        runner.style.left = Math.min(100, progress) + "%";
+
         if(currentDistance > finalDistance)
         {
             clearInterval(distanceCheckTimer);
@@ -170,14 +191,14 @@ function resultLogic()
 
 function failMaxLogic()
 {
-    gameStateDisplay.innerText = "Wow, you overexerted yourself and failed...";
+    gameStateDisplay.innerText = "Wow, you overexerted yourself. Try again.";
     volumeDisplay.innerText = "Volume: 0";
     restartGameButton.disabled = false;
 }
 
 function failMinLogic()
 {
-    gameStateDisplay.innerText = "Wow, you need to actually try...";
+    gameStateDisplay.innerText = "You put in no effort and tripped. Try again.";
     volumeDisplay.innerText = "Volume: 0";
     restartGameButton.disabled = false;
 }
