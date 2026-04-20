@@ -177,7 +177,7 @@ function distanceCheckAndChange()
 
 function jumpingLogic()
 {
-    gameStateDisplay.innerText = "Jumping, insert animation here eventually";
+    gameStateDisplay.innerText = "Jumping!";
     setTimeout(resultLogic, 2000);
 }
 
