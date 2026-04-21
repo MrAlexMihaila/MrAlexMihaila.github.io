@@ -1,4 +1,3 @@
-const powerMeter = document.getElementById("powerMeter");
 const gameStateDisplay = document.getElementById("gameStateDisplay");
 const volumeDisplay = document.getElementById("volumeText");
 
@@ -10,14 +9,14 @@ const powerChangeValue = 10;
 
 let timesAtMaxPower = 0;
 let timesAtMinPower = 0;
-const maxTimeAtMaxPower = 5;
-const maxTimeAtMinPower = 5;
+const maxTimeAtMaxPower = 3;
+const maxTimeAtMinPower = 3;
 
 let currentDistance = 0;
-const smallDistanceMult = 5;
-const mediumDistanceMult = 10;
-const largeDistanceMult = 20;
-const finalDistance = 250;
+const smallDistanceMult = 10;
+const mediumDistanceMult = 20;
+const largeDistanceMult = 40;
+const finalDistance = 200;
 
 //1 - intro
 //2 - running/power meter part
@@ -79,7 +78,7 @@ function startGame()
         timesAtMaxPower = 0;
         timesAtMinPower = 0;
         distanceCheckTimer = setInterval(distanceCheckAndChange, 750);
-        document.getElementById("instructionBox").style.display = "none";
+        document.getElementById("instructions").style.display = "none";
     }
 }
 
@@ -128,6 +127,20 @@ function distanceCheckAndChange()
             mult = smallDistanceMult;
         }
 
+        currentDistance = currentDistance + (1 * mult);
+
+        const runner = document.getElementById("runner-icon");
+        const progress = (currentDistance / finalDistance) * 100;
+        runner.style.left = Math.min(100, progress) + "%";
+
+        if(currentDistance > finalDistance)
+        {
+            clearInterval(distanceCheckTimer);
+            gameState = 3;
+            jumpingLogic();
+            return;
+        }
+
         if(powerValue === 100)
         {
             timesAtMaxPower = timesAtMaxPower + 1;
@@ -159,19 +172,6 @@ function distanceCheckAndChange()
         {
             timesAtMinPower = 0;
         }
-
-        currentDistance = currentDistance + (1 * mult);
-
-        const runner = document.getElementById("runner-icon");
-        const progress = (currentDistance / finalDistance) * 100;
-        runner.style.left = Math.min(100, progress) + "%";
-
-        if(currentDistance > finalDistance)
-        {
-            clearInterval(distanceCheckTimer);
-            gameState = 3;
-            jumpingLogic();
-        }
     }
 }
 
@@ -185,20 +185,20 @@ function resultLogic()
 {
     gameState = 4;
     gameStateDisplay.innerText = "Finished! You did it!";
-    volumeDisplay.innerText = "Volume: " + powerValue;
+    volumeDisplay.innerText = "Current Volume: " + powerValue;
     restartGameButton.disabled = false;
 }
 
 function failMaxLogic()
 {
     gameStateDisplay.innerText = "Wow, you overexerted yourself. Try again.";
-    volumeDisplay.innerText = "Volume: 0";
+    volumeDisplay.innerText = "Current Volume: 0";
     restartGameButton.disabled = false;
 }
 
 function failMinLogic()
 {
     gameStateDisplay.innerText = "You put in no effort and tripped. Try again.";
-    volumeDisplay.innerText = "Volume: 0";
+    volumeDisplay.innerText = "Current Volume: 0";
     restartGameButton.disabled = false;
 }

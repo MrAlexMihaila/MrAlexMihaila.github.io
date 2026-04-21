@@ -8,36 +8,47 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="instructions">
-            <h3>How to Play</h3>
-            <ul>
-                <li>Tap <strong>SPACE</strong> to gain power.</li>
-                <li>Don't stay at <strong>100%</strong> or <strong>0%</strong> for too long or you'll trip!</li>
-            </ul>
-        </div>
-
         <div class="meter-label">
             Power Level
         </div>
+
         <div id="power-bar-container">
             <div id="power-bar-fill"></div>
         </div>
 
-        <div class="meter-label">Distance to Jump</div>
+        <div class="meter-label">
+            Distance to Jump
+        </div>
+
         <div id="track-container">
             <div id="runner-icon">o</div>
         </div>
 
-        <p id="gameStateDisplay">Ready?</p>
+        <p id="gameStateDisplay">
+            Ready?
+        </p>
+
         <button id="startGameButton" onclick="startGame()">
             Start Game
         </button>
+
         <button id="restartGameButton" onclick="restartGame()" disabled>
             Restart Game
         </button>
+
         <p id="volumeText">
             Current Volume: --
         </p>
+
+        <div id="instructions">
+            <h3>How to Play</h3>
+            <ul>
+                <li>Tap <strong>SPACE</strong> to gain power.</li>
+                <li>You lose power as you're running.</li>
+                <li>Don't stay at <strong>100%</strong> or <strong>0%</strong> for too long or you'll trip!</li>
+                <li>Your power at the end determines your jump distance, and therefore your volume!</li>
+            </ul>
+        </div>
     </div>
     <script src="final.js"></script>
 </body>
