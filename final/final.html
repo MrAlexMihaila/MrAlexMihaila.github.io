@@ -8,24 +8,22 @@
 </head>
 <body>
     <div id="game-container">
-        <div class="meter-label">
-            Power Level
-        </div>
-
+        <p>
+            <strong>Power Meter</strong> — press SPACE to fill (drains while running)
+        </p>
         <div id="power-bar-container">
             <div id="power-bar-fill"></div>
         </div>
 
-        <div class="meter-label">
-            Distance to Jump
-        </div>
-
+        <p>
+            <strong>Distance to Jump Point</strong>
+        </p>
         <div id="track-container">
             <div id="runner-icon">o</div>
         </div>
 
         <p id="gameStateDisplay">
-            Ready?
+            Game Not Started
         </p>
 
         <button id="startGameButton" onclick="startGame()">
@@ -37,7 +35,7 @@
         </button>
 
         <p id="volumeText">
-            Current Volume: --
+            Volume: 
         </p>
 
         <div id="instructions">
@@ -46,7 +44,7 @@
                 <li>Tap <strong>SPACE</strong> to gain power.</li>
                 <li>You lose power as you're running.</li>
                 <li>Don't stay at <strong>100%</strong> or <strong>0%</strong> for too long or you'll trip!</li>
-                <li>Your power at the end determines your jump distance, and therefore your volume!</li>
+                <li>Your power at the jump point becomes your volume (0–100).</li>
             </ul>
         </div>
     </div>
