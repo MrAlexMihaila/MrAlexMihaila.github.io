@@ -1,7 +1,10 @@
-const gameStateDisplay = document.getElementById("gameStateDisplay");
 const volumeDisplay = document.getElementById("volumeText");
 const startGameButton = document.getElementById("startGameButton");
 const restartGameButton = document.getElementById("restartGameButton");
+const runner = document.getElementById("runner-icon");
+const countdownOverlay = document.getElementById("countdown-overlay");
+const countdownNumber = document.getElementById("countdown-number");
+const infoBox = document.getElementById("info-box");
 
 let powerValue = 0;
 const POWER_UP = 15;
@@ -9,12 +12,19 @@ const POWER_DOWN = 7;
 
 let timesAtMaxPower = 0;
 let timesAtMinPower = 0;
-const maxTimeAtMaxPower = 3;
-const maxTimeAtMinPower = 3;
+const maxTimeAtMaxPower = 5;
+const maxTimeAtMinPower = 5;
 
 let currentDistance = 0;
 const finalDistance = 200;
 
+//for running animation
+const runFrames = ["🏃", "🚶"];
+let frameIndex = 0;
+let frameTimer = null;
+runner.style.transform = "scaleX(-1)"; //force them to face right
+
+//0, countdown
 //1, intro 
 //2, running 
 //3, jumping 
@@ -23,6 +33,8 @@ const finalDistance = 200;
 //6, fail min power
 let gameState = 1;
 let distanceCheckTimer;
+
+let finalJumpVolume = 0;
 
 addEventListener("keydown", e => {
     if(e.code === "Space" && gameState === 2)
@@ -52,15 +64,70 @@ function powerValueCalculation(increasing)
     setPower(increasing ? powerValue + POWER_UP : powerValue - POWER_DOWN);
 }
 
-function startGame()
+function startRunAnimation()
 {
-    if(gameState !== 1) 
+    runner.classList.add("running");
+    frameTimer = setInterval(() => {
+        frameIndex = (frameIndex + 1) % runFrames.length;
+        runner.innerText = runFrames[frameIndex];
+    }, 200);
+}
+
+function stopRunAnimation() 
+{
+    runner.classList.remove("running");
+    clearInterval(frameTimer);
+    frameTimer = null;
+}
+
+function beginCountdown()
+{
+    if(gameState !== 1)
     {
         return;
     }
 
+    gameState = 0;
+    startGameButton.disabled  = true;
+    restartGameButton.disabled = true;
+    document.getElementById("instructions").style.display = "none";
+
+    let count = 3;
+    countdownNumber.className = "";
+    countdownNumber.textContent = count;
+    countdownOverlay.classList.add("active");
+
+    const tick = setInterval(() => {
+        count = count - 1;
+        countdownNumber.style.animation = "none";
+        countdownNumber.offsetHeight;
+        countdownNumber.style.animation = "";
+
+        if(count > 0)
+        {
+            countdownNumber.className = "";
+            countdownNumber.textContent = count;
+        }
+        else 
+        {
+            clearInterval(tick);
+            countdownNumber.classList.add("go");
+            countdownNumber.textContent = "GO!";
+            setTimeout(() => {
+                countdownOverlay.classList.remove("active");
+                startGame();
+            }, 700);
+        }
+    }, 900);
+}
+
+function startGame()
+{
     gameState = 2;
-    gameStateDisplay.innerText = "Running";
+    runner.className = "";
+    runner.style.transform = "scaleX(-1)";
+    runner.innerText = runFrames[0];
+    startRunAnimation()
     startGameButton.disabled = true;
     restartGameButton.disabled = true;
     setPower(0);
@@ -78,12 +145,16 @@ function restartGame()
     }
 
     gameState = 1;
-    gameStateDisplay.innerText = "Game Not Started";
     volumeDisplay.innerText = "Volume: ";
     setPower(0);
     document.getElementById("runner-icon").style.left = "0%";
     startGameButton.disabled = false;
     restartGameButton.disabled = true;
+    runner.style.left = "0%";
+    runner.style.transform = "scaleX(-1)";
+    runner.innerText = "🏃";
+    runner.className = "";
+    infoBox.innerText = "";
 }
 
 function distanceCheckAndChange() 
@@ -103,7 +174,7 @@ function distanceCheckAndChange()
     {
         clearInterval(distanceCheckTimer);
         gameState = 3;
-        jumpingLogic();
+        startJumpAnimation();
         return;
     }
 
@@ -140,30 +211,43 @@ function distanceCheckAndChange()
     }
 }
 
-function jumpingLogic() 
-{
-    gameStateDisplay.innerText = "Jumping!";
-    setTimeout(resultLogic, 2000);
+function startJumpAnimation() {
+    clearInterval(distanceCheckTimer);
+    gameState = 3; 
+
+    finalJumpVolume = Math.floor(powerValue);
+    stopRunAnimation();
+
+    runner.innerText = "🤸";
+    runner.classList.add("jumping");
+
+    setTimeout(() => {
+        resultLogic(); 
+    }, 800);
 }
 
 function resultLogic() 
 {
     gameState = 4;
-    gameStateDisplay.innerText = "Finished! You did it!";
-    volumeDisplay.innerText = "Volume: " + powerValue;
+    stopRunAnimation();
+    volumeDisplay.innerText = "Volume: " + finalJumpVolume;
     restartGameButton.disabled = false;
 }
 
 function failMaxLogic() 
 {
-    gameStateDisplay.innerText = "Wow, you overexerted yourself. Try again.";
+    stopRunAnimation();
+    runner.innerText = "🫠";
+    infoBox.innerText = "Overexerted yourself! Try again!"
     volumeDisplay.innerText = "Volume: 0";
     restartGameButton.disabled = false;
 }
 
 function failMinLogic()
 {
-    gameStateDisplay.innerText = "You put in no effort and tripped. Try again.";
+    stopRunAnimation();
+    runner.innerText = "😵";
+    infoBox.innerText = "Underexerted yourself! Try again!";
     volumeDisplay.innerText = "Volume: 0";
     restartGameButton.disabled = false;
 }

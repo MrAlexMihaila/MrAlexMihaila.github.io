@@ -1,43 +1,247 @@
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    background: #f0f0ed;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #1a1a1a;
+}
+
+#game-container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 28px;
+    width: 420px;
+    position: relative;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+}
+
 #power-bar-container {
-    width: 300px;
-    height: 30px;
+    width: 100%;
+    height: 10px;
     background: #eee;
-    border: 2px solid #333;
-    border-radius: 15px;
+    border-radius: 99px;
     overflow: hidden;
-    margin: 10px 0;
+    margin-bottom: 24px;
 }
 
 #power-bar-fill {
     width: 0%;
     height: 100%;
-    background: black;
-    transition: width 0.1s ease;
+    background: #1a1a1a;
+    border-radius: 99px;
+    transition: width 0.15s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+#power-bar-fill.danger {
+    background: #c0392b;
+    animation: shake 0.1s infinite;
 }
 
 #track-container {
-    width: 300px;
-    height: 10px;
+    width: 100%;
+    height: 2px;
     background: #ddd;
     position: relative;
-    margin: 20px 0;
+    margin: 36px 0 28px;
+}
+
+.finish-line {
+    position: absolute;
+    right: 0;
+    top: -8px;
+    height: 18px;
+    width: 3px;
+    background: #1a1a1a;
 }
 
 #runner-icon {
     position: absolute;
     left: 0%;
-    top: -20px;
-    font-size: 20px;
+    top: -22px;
+    font-size: 22px;
     transition: left 0.1s linear;
+    transform-origin: bottom center;
 }
 
-.danger {
-    animation: shake 0.1s infinite;
-    background: red !important;
+#volumeText {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 14px;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: background 0.15s, color 0.15s;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #1a1a1a;
+}
+
+button:hover:not(:disabled) {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+button:disabled {
+    color: #bbb;
+    border-color: #e5e5e5;
+    cursor: not-allowed;
+}
+
+#instructions {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+    font-size: 0.78rem;
+    color: #888;
+    line-height: 1.8;
+}
+
+#instructions ul {
+    padding-left: 16px;
+}
+
+#countdown-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.92);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#countdown-overlay.active { 
+    display: flex; 
+}
+
+#countdown-number {
+    font-size: 5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#countdown-number.go {
+    font-size: 2.5rem;
+    color: #555;
+}
+
+@keyframes popIn {
+    0%   {
+        transform: scale(0.5); 
+        opacity: 0; 
+    }
+
+    70%  { 
+        transform: scale(1.08); 
+        opacity: 1; 
+    }
+
+    100% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
 }
 
 @keyframes shake {
-    0% { transform: translate(1px, 1px); }
-    50% { transform: translate(-1px, -1px); }
-    100% { transform: translate(1px, -1px); }
+    0%   { 
+        transform: translate(1px, 0); 
+    }
+
+    50%  { 
+        transform: translate(-1px, 0); 
+    }
+
+    100% { 
+        transform: translate(1px, 0); 
+    }
+}
+
+@keyframes jump {
+    0%   { 
+        transform: scaleX(-1) translateY(0px); 
+    }
+
+    40%  { 
+        transform: scaleX(-1) translateY(-32px); 
+    }
+
+    70%  { 
+        transform: scaleX(-1) translateY(-20px); 
+    }
+
+    100% { 
+        transform: scaleX(-1) translateY(0px); 
+    }
+}
+
+.jumping {
+    animation: jump 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes runBob {
+    0%   { 
+        transform: scaleX(-1) translateY(0px); 
+    }
+
+    50%  { 
+        transform: scaleX(-1) translateY(-5px); 
+    }
+
+    100% { 
+        transform: scaleX(-1) translateY(0px); 
+    }
+}
+
+.running {
+    animation: runBob 0.35s ease-in-out infinite;
+}
+
+
+#info-box {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #c0392b;
+    min-height: 1em;
+    margin-bottom: 6px;
 }

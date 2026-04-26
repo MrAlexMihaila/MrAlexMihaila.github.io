@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final</title>
     <link rel="stylesheet" href="final.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="game-container">
-        <p>
-            <strong>Power Meter</strong> — press SPACE to fill (drains while running)
-        </p>
-        <div id="power-bar-container">
-            <div id="power-bar-fill"></div>
+        <div id="countdown-overlay">
+            <div id="countdown-number">3</div>
         </div>
 
-        <p>
-            <strong>Distance to Jump Point</strong>
-        </p>
-        <div id="track-container">
-            <div id="runner-icon">o</div>
+        <div class="stats-panel">
+            <div class="stat-box">
+                <label>Power</label>
+                <div id="power-bar-container">
+                    <div id="power-bar-fill"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div id="info-box"></div>
+                <label>Track Progress</label>
+                <div id="track-container">
+                    <div id="runner-icon">🏃</div>
+                    <div class="finish-line"></div>
+                </div>
+            </div>
         </div>
 
-        <p id="gameStateDisplay">
-            Game Not Started
-        </p>
-
-        <button id="startGameButton" onclick="startGame()">
-            Start Game
-        </button>
-
-        <button id="restartGameButton" onclick="restartGame()" disabled>
-            Restart Game
-        </button>
-
-        <p id="volumeText">
-            Volume: 
-        </p>
+        <div class="ui-footer">
+            <div id="volumeText">Volume: --</div>
+            <div class="controls">
+                <button id="startGameButton" onclick="beginCountdown()">Start Game</button>
+                <button id="restartGameButton" onclick="restartGame()" disabled>Retry</button>
+            </div>
+        </div>
 
         <div id="instructions">
             <h3>How to Play</h3>
