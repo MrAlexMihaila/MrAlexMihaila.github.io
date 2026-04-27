@@ -5,6 +5,9 @@ const runner = document.getElementById("runner-icon");
 const countdownOverlay = document.getElementById("countdown-overlay");
 const countdownNumber = document.getElementById("countdown-number");
 const infoBox = document.getElementById("info-box");
+const crowdAudio = document.getElementById("crowd-audio");
+const booAudio = document.getElementById("crowd-boo-audio");
+const celebrateAudio = document.getElementById("celebrate-audio");
 
 let powerValue = 0;
 const POWER_UP = 15;
@@ -35,6 +38,19 @@ let gameState = 1;
 let distanceCheckTimer;
 
 let finalJumpVolume = 0;
+
+function startAudio(audioVar)
+{
+    audioVar.currentTime = 0;
+    audioVar.volume = 0.4;
+    audioVar.play();
+}
+
+function stopAudio(audioVar) 
+{
+    audioVar.pause();
+    audioVar.currentTime = 0;
+}
 
 addEventListener("keydown", e => {
     if(e.code === "Space" && gameState === 2)
@@ -90,7 +106,6 @@ function beginCountdown()
     gameState = 0;
     startGameButton.disabled  = true;
     restartGameButton.disabled = true;
-    document.getElementById("instructions").style.display = "none";
 
     let count = 3;
     countdownNumber.className = "";
@@ -134,7 +149,8 @@ function startGame()
     currentDistance = 0;
     timesAtMaxPower = timesAtMinPower = 0;
     distanceCheckTimer = setInterval(distanceCheckAndChange, 100);
-    document.getElementById("instructions").style.display = "none";
+    startAudio(crowdAudio);
+    //document.getElementById("instructions").style.display = "none";
 }
 
 function restartGame() 
@@ -143,6 +159,10 @@ function restartGame()
     {
         return;
     }
+
+    stopAudio(crowdAudio);
+    stopAudio(booAudio);
+    stopAudio(celebrateAudio);
 
     gameState = 1;
     volumeDisplay.innerText = "Volume: ";
@@ -230,6 +250,9 @@ function resultLogic()
 {
     gameState = 4;
     stopRunAnimation();
+    stopAudio(crowdAudio);
+    startAudio(celebrateAudio);
+    launchConfetti();
     volumeDisplay.innerText = "Volume: " + finalJumpVolume;
     restartGameButton.disabled = false;
 }
@@ -237,6 +260,8 @@ function resultLogic()
 function failMaxLogic() 
 {
     stopRunAnimation();
+    stopAudio(crowdAudio);
+    startAudio(booAudio);
     runner.innerText = "🫠";
     infoBox.innerText = "Overexerted yourself! Try again!"
     volumeDisplay.innerText = "Volume: 0";
@@ -246,8 +271,66 @@ function failMaxLogic()
 function failMinLogic()
 {
     stopRunAnimation();
+    stopAudio(crowdAudio);
+    startAudio(booAudio);
     runner.innerText = "😵";
     infoBox.innerText = "Underexerted yourself! Try again!";
     volumeDisplay.innerText = "Volume: 0";
     restartGameButton.disabled = false;
+}
+
+function launchConfetti() 
+{
+    const colors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6", "#e67e22"];
+    const container = document.getElementById("game-container");
+
+    for(let i = 0; i < 80; i++) 
+    {
+        const piece = document.createElement("div");
+        const isRect = Math.random() > 0.5;
+        const size = Math.random() * 8 + 5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const startX = Math.random() * 100; // % across container
+        const delay = Math.random() * 1.2;
+        const duration = Math.random() * 1.5 + 1.5;
+        const drift = (Math.random() - 0.5) * 160; // px left or right
+        const spin = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 600 + 200);
+
+        piece.style.cssText = `
+            position: absolute;
+            width: ${isRect ? size : size * 0.6}px;
+            height: ${isRect ? size * 0.4 : size}px;
+            background: ${color};
+            left: ${startX}%;
+            top: -12px;
+            border-radius: ${isRect ? "2px" : "50%"};
+            pointer-events: none;
+            z-index: 20;
+            animation: none;
+        `;
+        container.appendChild(piece);
+
+        piece.animate([
+            { 
+                transform: `translateY(0px) translateX(0px) rotate(0deg)`, 
+                opacity: 1 
+            },
+
+            { 
+                transform: `translateY(180px) translateX(${drift * 0.4}px) rotate(${spin * 0.4}deg)`, 
+                opacity: 1, 
+                offset: 0.5 
+            },
+
+            { 
+                transform: `translateY(420px) translateX(${drift}px) rotate(${spin}deg)`, 
+                opacity: 0 
+            }
+        ], {
+            duration: duration * 1000,
+            delay: delay * 1000,
+            easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            fill: "forwards"
+        }).onfinish = () => piece.remove();
+    }
 }

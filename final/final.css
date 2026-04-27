@@ -237,7 +237,6 @@ button:disabled {
     animation: runBob 0.35s ease-in-out infinite;
 }
 
-
 #info-box {
     font-size: 0.75rem;
     font-weight: 500;
